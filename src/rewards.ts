@@ -36,8 +36,8 @@ export class Rewards {
         ...acc,
         [month]: {
           total: {
-            eth: Number(acc[month]?.total.eth || 0) + Number(cur.eth),
-            brl: (Number(acc[month]?.total.brl || 0) + Number(cur.eth)) * ethPrice,
+            eth: Number(acc[month]?.total?.eth || 0) + Number(cur.eth),
+            brl: (Number(acc[month]?.total?.brl || 0) + Number(cur.eth)) * ethPrice,
           },
           blocks: [
             ...(acc[month]?.blocks || []),

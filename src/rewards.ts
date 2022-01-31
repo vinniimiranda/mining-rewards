@@ -2,7 +2,6 @@ import axios from "axios";
 import { DateTime } from "luxon";
 import { parse } from "papaparse";
 
-
 export class Rewards {
   private address: string;
 
@@ -36,8 +35,10 @@ export class Rewards {
       return {
         ...acc,
         [month]: {
-          total: Number(acc[month]?.total || 0) + Number(cur.eth),
-          totalBrl: (Number(acc[month]?.total || 0) + Number(cur.eth)) * ethPrice,
+          total: {
+            eth: Number(acc[month]?.total.eth || 0) + Number(cur.eth),
+            brl: (Number(acc[month]?.total.brl || 0) + Number(cur.eth)) * ethPrice,
+          },
           blocks: [
             ...(acc[month]?.blocks || []),
             {

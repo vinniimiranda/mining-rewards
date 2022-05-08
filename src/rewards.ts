@@ -29,7 +29,7 @@ export class Rewards {
 
     return rewards.reduce((acc, cur) => {
       const date = new Date(cur.date);
-      const month = DateTime.fromJSDate(date).setLocale("pt-br").toFormat("MMMM/yyyy");
+      const month = DateTime.fromJSDate(date, { zone: "America/Sao_Paulo" }).setLocale("pt-br").toFormat("MMMM/yyyy");
       if (month === "Invalid DateTime") {
         return acc;
       }
@@ -54,7 +54,6 @@ export class Rewards {
 
   async execute() {
     const rewards = await this.getRewards();
-    const rewardsByMonth = await this.calculateRewards(rewards);
-    return rewardsByMonth;
+    return this.calculateRewards(rewards);
   }
 }
